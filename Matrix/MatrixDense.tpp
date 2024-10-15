@@ -73,3 +73,20 @@ MatrixDense<T> MatrixDense<T>::operator-(const MatrixDense<T>& other) const{
     }
     return rezult;
 }
+
+template<typename T>
+MatrixDense<T> MatrixDense<T>::operator*(const MatrixDense<T>& other) const{
+    if (cols != other.rows){
+        throw std::invalid_argument("Cols != other.rows unlucky");
+    }
+    MatrixDense<T> rezult(rows, other.cols);
+    for (size_t i = 0; i < rows; i++){
+        for (size_t j = 0; j < other.cols; j++){
+            rezult(i, j) = 0;
+            for (size_t k = 0; k < cols; k++){
+                rezult(i, j) += (*this)(i, k) * other(k, j);
+            }
+        }
+    }
+    return rezult;
+}
