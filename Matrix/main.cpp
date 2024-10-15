@@ -16,8 +16,9 @@ int main(){
     
 
     matrix.print();
-    MatrixDense<int> B = matrix.multiply(6);
+    MatrixDense<int> B = matrix.multiply(arr);
     B.print();
-    matrix.print();
+    B.transpose().print();
+    B.print();
     return 0;
 }

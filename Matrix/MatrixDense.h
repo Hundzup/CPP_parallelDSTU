@@ -18,6 +18,8 @@ class MatrixDense{
         MatrixDense<T> operator-(const MatrixDense<T>& other) const;
         MatrixDense<T> operator*(const MatrixDense<T>& other) const;
         MatrixDense<T> multiply(T scalar) const;
+        MatrixDense<T> multiply(const MatrixDense<T>& other) const;
+        MatrixDense<T> transpose() const;
 };
 
 #include "MatrixDense.tpp"
