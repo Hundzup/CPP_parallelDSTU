@@ -10,9 +10,9 @@ int main(){
     
     MatrixDense<int> arr(2,2);
     arr(0,0) = 2;
-    arr(1,0) = 3;
     arr(0,1) = 4;
-    arr(1,1) = 5;
+    arr(1,0) = 3;
+    arr(1,1) = 1;
     MatrixDense<int> rez =  matrix * arr;
 
     arr.print();
