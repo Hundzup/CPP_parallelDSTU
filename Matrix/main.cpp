@@ -13,7 +13,7 @@ int main(){
     arr(0,1) = 4;
     arr(1,0) = 3;
     arr(1,1) = 1;
-    MatrixDense<int> rez =  matrix * arr;
+    MatrixDense<int> rez =  arr * matrix;
 
     arr.print();
     matrix.print();
