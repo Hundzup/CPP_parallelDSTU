@@ -90,3 +90,14 @@ MatrixDense<T> MatrixDense<T>::operator*(const MatrixDense<T>& other) const{
     }
     return rezult;
 }
+
+template<typename T>
+MatrixDense<T> MatrixDense<T>::multiply(T scalar) const{
+    MatrixDense<T> rezult(rows, cols);
+    for (size_t i = 0; i < rows; i++){
+        for (size_t j = 0; j < cols; j++){
+            rezult(i, j) = (*this)(i, j) * scalar;
+        }
+    }
+    return rezult;
+}

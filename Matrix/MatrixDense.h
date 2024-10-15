@@ -17,6 +17,7 @@ class MatrixDense{
         void print();
         MatrixDense<T> operator-(const MatrixDense<T>& other) const;
         MatrixDense<T> operator*(const MatrixDense<T>& other) const;
+        MatrixDense<T> multiply(T scalar) const;
 };
 
 #include "MatrixDense.tpp"
