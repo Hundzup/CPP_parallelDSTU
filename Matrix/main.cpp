@@ -8,17 +8,19 @@ int main(){
     matrix(1,0) = 3;
     matrix(1,1) = 4;
     
-    MatrixDense<int> arr(2,2);
+    MatrixDense<int> arr(1,4);
     arr(0,0) = 2;
     arr(0,1) = 4;
-    arr(1,0) = 3;
-    arr(1,1) = 1;
+    arr(0,2) = 0;
+    arr(0,3) = 0;
     
-
-    matrix.print();
-    MatrixDense<int> B = matrix.multiply(arr);
-    B.print();
-    B.transpose().print();
+    MatrixDense<int> vec1(1, 4);
+    vec1(0, 0) = 0;
+    vec1(0, 1) = 1;
+    vec1(0, 2) = 2;
+    vec1(0, 3) = 3;
+    // vec1.transpose().print();
+    MatrixDense<int> B = arr.multiply(vec1);
     B.print();
     return 0;
 }

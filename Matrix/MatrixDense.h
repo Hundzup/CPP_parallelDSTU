@@ -11,6 +11,8 @@ class MatrixDense{
     public:
         MatrixDense(size_t rows, size_t cols);
         ~MatrixDense();
+        MatrixDense(const MatrixDense& other);
+        MatrixDense<T>& operator=(const MatrixDense<T>& other);
         T& operator()(size_t row, size_t col);
         const T& operator()(size_t row, size_t col) const;
         MatrixDense<T> operator+(const MatrixDense<T>& other) const;

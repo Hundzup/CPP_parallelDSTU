@@ -104,6 +104,24 @@ MatrixDense<T> MatrixDense<T>::multiply(T scalar) const{
 
 template<typename T>
 MatrixDense<T> MatrixDense<T>::multiply(const MatrixDense<T>& other) const{
+    //check vec2vec
+    if (cols == 1 && other.cols == 1 || rows == 1 && other.rows == 1){
+        MatrixDense<T> rezult(1, 1);
+        rezult(0, 0) = (*this)(0, 0) * other(0, 0);
+
+        if (cols == 1){
+            for (size_t i = 1; i < rows; i++){
+                rezult(0, 0) += (*this)(i, 0) * other(i, 0);
+            }
+        }
+        if (rows == 1){
+            for (size_t i = 1; i < cols; i++){
+                rezult(0, 0) += (*this)(0, i) * other(0, i);
+                // rezult.print();
+            }
+        } 
+        return rezult;
+    }
     if (cols != other.rows){
         throw std::invalid_argument("Cols != other.rows");
     }
@@ -129,3 +147,40 @@ MatrixDense<T> MatrixDense<T>::transpose() const{
     }
     return rezult;
 }
+
+template<typename T>
+MatrixDense<T>::MatrixDense(const MatrixDense& other){
+    rows = other.rows;
+    cols = other.cols;
+    arr = new T*[rows];
+    for(size_t i = 0; i < rows; i++){
+        arr[i] = new T[cols];
+        for(size_t j = 0; j < cols; j++){
+            arr[i][j] = other.arr[i][j];
+        }
+    }
+}
+
+template<typename T>
+MatrixDense<T>& MatrixDense<T>::operator=(const MatrixDense<T>& other){
+    if (this == &other){
+        return *this;
+    }
+    for(size_t i = 0; i < rows; i++){
+        delete[] arr[i];
+    }
+    delete[] arr;
+
+    rows = other.rows;
+    cols = other.cols;
+    arr = new T*[rows];
+    for(size_t i = 0; i < rows; i++){
+        arr[i] = new T[cols];
+        for(size_t j = 0; j < cols; j++){
+            arr[i][j] = other(i, j);
+        }
+    }
+    return *this;
+}
+
+
