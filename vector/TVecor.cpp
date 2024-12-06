@@ -1,3 +1,3 @@
-//same as Vector + std::treads + 
+//same as Vector + std::threads + 
 //for example
 //max(count_threads)
