@@ -13,13 +13,14 @@ class Vector{
         Vector(size_t n);
         ~Vector();
         void initialize_by_const(T value);
-        void initialize_by_random(int start=0, int end=1);
+        void initialize_by_random(T start, T end);
         void export2file(char name);
         void importfromfile(char name);
         T sum_elem();
-        T euclid_metric();
+        T euclid_metric(const Vector<T>& other) const;
         T mean();
-        Vector<T> multiply(const Vector<T>& other) const;
+        T multiply(const Vector<T>& other) const;
+        const T& operator()(size_t i) const;
         std::pair<T, size_t> max();
         std::pair<T, size_t> min();
         void print();

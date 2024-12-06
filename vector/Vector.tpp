@@ -2,6 +2,8 @@
 #include "Vector.h"
 #include <cstdlib>
 #include <utility>
+#include <cmath>
+#include <random>
 
 template<typename T>
 Vector<T>::Vector(size_t n): n(n){
@@ -22,14 +24,16 @@ void Vector<T>::initialize_by_const(T value){
     }
 }
 
-// template<typename T>
-// void Vector<T>::initialize_by_random(int start=0, int end=1){
-//     // is_initialize = true;
-//     // for(size_t i=0; i<n; i++){
-//     //     data[i] = std::rand();
-//     // }
-//     std::cout << "ERROR!!!!!" << std::endl; 
-// }
+template<typename T>
+void Vector<T>::initialize_by_random(T start, T end){
+    is_initialize = true;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> distrib(start, end);
+    for(size_t i=0; i<n; i++){
+        data[i] = (T)distrib(gen);
+    }
+}
 
 template<typename T>
 T Vector<T>::sum_elem(){
@@ -57,11 +61,18 @@ T Vector<T>::mean(){
 }
 
 template<typename T>
-T Vector<T>::euclid_metric(){
+T Vector<T>::euclid_metric(const Vector<T>& other) const{
     if (is_initialize == false){
         throw std::runtime_error("You have to initialize arry");
     }
-    std::cout << "ERROR!!!" << std::endl;
+    if (n!=other.n){
+        throw std::invalid_argument("Need the same size of vectors");
+    }
+    T rezult = 0;
+    for(size_t i=0; i < n; i++){
+        rezult += sqrt(pow(data[i] - other(i), 2));
+    }
+    return rezult;
 }
 
 template<typename T>
@@ -107,4 +118,24 @@ void Vector<T>::print(){
         std::cout << data[i] << ", ";
     }
     std::cout<< std::endl;
+}
+
+template<typename T>
+T Vector<T>::multiply(const Vector<T>& other) const{
+    if (n != other.n){
+        throw std::invalid_argument("Need the same size of vectors");
+    }
+    if (is_initialize == false){
+        throw std::runtime_error("You have to initialize arry");
+    }
+    T rezult = 0;
+    for(size_t i = 0; i < n; i++){
+        rezult += data[i] * other(i);
+    }
+    return rezult;
+}
+
+template<typename T>
+const T& Vector<T>::operator()(size_t i) const{
+    return data[i];
 }
