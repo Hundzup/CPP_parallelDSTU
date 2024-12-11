@@ -14,8 +14,8 @@ class Vector{
         ~Vector();
         void initialize_by_const(T value);
         void initialize_by_random(T start, T end);
-        void export2file(char name);
-        void importfromfile(char name);
+        void export2file(const char* name);
+        void importfromfile(const char* name);
         T sum_elem();
         T euclid_metric(const Vector<T>& other) const;
         T mean();
@@ -24,6 +24,7 @@ class Vector{
         std::pair<T, size_t> max();
         std::pair<T, size_t> min();
         void print();
+
 };
 
 #include "Vector.tpp"

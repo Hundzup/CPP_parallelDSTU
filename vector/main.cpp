@@ -13,9 +13,13 @@ int main(){
     auto idx = rezult.second;
     std::cout << value << " " << idx << std::endl;
     std::cout << V.min().first << " " << V.min().second << std::endl;
-    V.print();
     B.print();
     std::cout << V.multiply(B) << std::endl;
     std::cout << V.euclid_metric(B) << std::endl;
+    B.export2file("new_file");
+    V.print();
+    V.importfromfile("new_file");
+    V.print();
+    
     return 0;
 }

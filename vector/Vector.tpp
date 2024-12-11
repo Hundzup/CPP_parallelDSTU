@@ -4,6 +4,8 @@
 #include <utility>
 #include <cmath>
 #include <random>
+#include <fstream>
+#include <string>
 
 template<typename T>
 Vector<T>::Vector(size_t n): n(n){
@@ -138,4 +140,30 @@ T Vector<T>::multiply(const Vector<T>& other) const{
 template<typename T>
 const T& Vector<T>::operator()(size_t i) const{
     return data[i];
+}
+
+template<typename T>
+void Vector<T>::export2file(const char* name){
+    std::ofstream outFile(name);
+    outFile << n << std::endl;
+    for (size_t i=0; i<n; i++){
+        outFile << data[i] << " ";
+    }
+    outFile.close();
+}
+
+template<typename T>
+void Vector<T>::importfromfile(const char* name){
+    std::ifstream inputFile(name);
+    size_t n_tmp;
+    inputFile >> n_tmp;
+    if (n_tmp != n){
+        throw std::invalid_argument("Not the same size of arrays");
+    }
+
+    for (size_t i=0; i<n; i++){
+        inputFile >> data[i];
+    }
+
+    inputFile.close();
 }
