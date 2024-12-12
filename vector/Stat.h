@@ -32,8 +32,9 @@ class Stat{
             TVector<double> TVec_B(size);
             TVec.initialize_by_random(1, 10);
             TVec_B.initialize_by_random(1, 10);
+            std::cout << "Loading: size of arr - "<< size<<"\n[>";
             for (int i=0; i < len; i++){
-                std::cout << threads[i] << std::endl;
+                std::cout << "==";
                 if (threads[i] == 1){
 
                     Vector<double> Vec(size);
@@ -94,6 +95,7 @@ class Stat{
                 }
             }
             File.close();
+            std::cout << ">]\nCompleate!!!\nChanges saved to "<<name;
         }                
 
 };
