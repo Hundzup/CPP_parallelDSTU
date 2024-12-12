@@ -23,6 +23,14 @@ class Vector{
             is_initialize = false;
         }
 
+        bool getIs_initialize() const{
+            return is_initialize;
+        }
+
+        size_t getN() const{
+            return n;
+        }
+
         ~Vector(){
             delete[] data;
         }
@@ -120,7 +128,7 @@ class Vector{
             return rezult;
         }
 
-        const T& operator()(size_t i) const{
+        T& operator()(size_t i) const{
             return data[i];
         }
 
