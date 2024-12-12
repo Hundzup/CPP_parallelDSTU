@@ -1,6 +1,7 @@
 #include "Vector.h"
 #include <iostream>
 #include "TVector.h"
+#include "Stat.h"
 
 
 int main(){
@@ -23,17 +24,20 @@ int main(){
     // Vector<double> D(12);
     // V.importfromfile("new_file");
     // V.print();
-    TVector<double> A(10);   
-    TVector<double> B(120);
-    A.initialize_by_random(1, 10);
-    B.initialize_by_const(1);
-    A.print();
-    // std::cout << A(100) << std::endl;
-    // std::cout << A.sum_elem(10) << std::endl;
-    // std::cout << A.getN(); 
-    // std::cout << A.getN() << std::endl;
-    // std::cout << B.getN() << std::endl;
-    auto sum_rez = A.min(9);
-    std::cout << sum_rez.first.first << " " << sum_rez.first.second << " " << sum_rez.second;
+    // TVector<double> A(10);   
+    // TVector<double> B(120);
+    // A.initialize_by_random(1, 10);
+    // B.initialize_by_const(1);
+    // A.print();
+    // // std::cout << A(100) << std::endl;
+    // // std::cout << A.sum_elem(10) << std::endl;
+    // // std::cout << A.getN(); 
+    // // std::cout << A.getN() << std::endl;
+    // // std::cout << B.getN() << std::endl;
+    // auto sum_rez = A.min(9);
+    // std::cout << sum_rez.first.first << " " << sum_rez.first.second << " " << sum_rez.second;
+    Stat A(10);
+    int threads[] = {1, 2, 3, 4};
+    A.create_stats(threads, sizeof(threads)/sizeof(int), "stat");
     return 0;
 }

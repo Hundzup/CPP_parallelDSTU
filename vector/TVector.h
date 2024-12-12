@@ -18,7 +18,9 @@ class TVector :public Vector<T>{
     public:
         TVector(size_t n) : Vector<T>(n){}
 
-        ~TVector(){}
+        ~TVector(){
+            delete[] data;
+        }
 
         using Vector<T>::initialize_by_const;
 
@@ -181,7 +183,7 @@ class TVector :public Vector<T>{
             if (this->getIs_initialize() == false){
                 throw std::runtime_error("You have to initialize arry");
             }
-            T max = this->operator()(i);
+            T max = this->operator()(0);
             size_t idx = 0;
             int count_lenght = this->getN()/(double)n_thread;
             Vector<std::thread> threads(n_thread);
