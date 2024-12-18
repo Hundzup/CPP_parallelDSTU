@@ -1,32 +1,17 @@
 #include "MatrixDense.h"
 #include <iostream>
+#include "MatrixDiagonal.h"
+#include "../vector/Vector.h"
 
 int main(){
-    MatrixDense<int> matrix(2,2);
-    matrix(0,0) = 1;
-    matrix(0,1) = 2;
-    matrix(1,0) = 3;
-    matrix(1,1) = 4;
-    
-    MatrixDense<int> arr(1,4);
-    arr(0,0) = 2;
-    arr(0,1) = 4;
-    arr(0,2) = 0;
-    arr(0,3) = 0;
-    
-    MatrixDense<int> vec1(1, 4);
-    vec1(0, 0) = 0;
-    vec1(0, 1) = 1;
-    vec1(0, 2) = 2;
-    vec1(0, 3) = 3;
-    vec1.transpose().print();
-    MatrixDense<int> B = arr.multiply(vec1);
-    B.print();
-    matrix.print();
-    // matrix.export2file("dense_mat");
-    std::cout << "imported matrix1" << std::endl;
-    MatrixDense<int> mat(2,2);
-    mat.importfromfile("dense_mat");
-    mat.print();
+    // int *idx {new int[]{0,1,2,3}};
+    size_t size = 5;
+    Vector<int> idx(5);
+    idx(0) = 0;
+    idx(1) = 1;
+    idx(2) = 2;
+    idx(3) = 3;
+    idx(4) = 4;
+    MatrixDiagonal<int> arr(size, &idx);
     return 0;
 }
