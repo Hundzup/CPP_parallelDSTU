@@ -19,8 +19,9 @@ int main(){
     vec1(0, 1) = 1;
     vec1(0, 2) = 2;
     vec1(0, 3) = 3;
-    // vec1.transpose().print();
+    vec1.transpose().print();
     MatrixDense<int> B = arr.multiply(vec1);
     B.print();
+    matrix.print();
     return 0;
 }

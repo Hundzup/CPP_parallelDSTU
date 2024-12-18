@@ -4,6 +4,7 @@
 #include "Vector.h"
 #include "TVector.h"
 #include "time.h"
+#include <cstdlib>
 
 class Stat{
     private:
@@ -32,11 +33,18 @@ class Stat{
             TVector<double> TVec_B(size);
             TVec.initialize_by_random(1, 10);
             TVec_B.initialize_by_random(1, 10);
-            std::cout << "Loading: size of arr - "<< size<<"\n[>";
+    
             for (int i=0; i < len; i++){
-                std::cout << "==";
+                system("cls");
+                std::cout << "Loading: size of arr - "<< size<<"\n["<<i<<"/"<<len-1<<"][>";
+                for (int j=0; j < len; j++){
+                    if (j <= i){
+                        std::cout << "==";
+                    }else{
+                        std::cout << "  ";
+                    }
+                }
                 if (threads[i] == 1){
-
                     Vector<double> Vec(size);
                     Vector<double> Vec_B(size);
                     Vec.initialize_by_random(1, 10);
@@ -97,9 +105,7 @@ class Stat{
             File.close();
             std::cout << ">]\nCompleate!!!\nChanges saved to "<<name;
         }                
-
 };
-
 
 
 #endif
