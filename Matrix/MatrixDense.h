@@ -2,6 +2,7 @@
 #define MATRIXDENSE_H
 #include <cstddef>
 #include <iostream>
+#include <fstream>
 
 template<typename T>
 class MatrixDense{
@@ -177,6 +178,40 @@ class MatrixDense{
                 }
             }
             return rezult;
+        }
+
+        void export2file(const char* name){
+            std::ofstream outFile(name);
+            int type_file = 0;
+            outFile << type_file << std::endl;
+            outFile << rows << " " << cols << std::endl;
+            for (size_t i = 0; i < rows; i++){
+                for (size_t j = 0; j < cols; j++){
+                    outFile << arr[i][j] << " ";
+                }
+                outFile << std::endl;
+            }
+            outFile.close();
+        }
+
+        void importfromfile(const char* name){
+            std::ifstream inputFile(name);
+            size_t rows_tmp, cols_tmp;
+            int type_file;
+            inputFile >> type_file;
+            if (type_file != 0){
+                throw std::invalid_argument("Invalid type file");
+            }
+            inputFile >> rows_tmp >> cols_tmp;
+            if (rows_tmp != rows || cols_tmp != cols){
+                throw std::invalid_argument("Invalid size of arr");
+            }
+            for (size_t i = 0; i < rows; i++){
+                for (size_t j = 0; j < cols; j++){
+                    inputFile >> arr[i][j];
+                }
+            }        
+            inputFile.close();
         }
         // TODO: creame scalar multiply
         // vec2vec, mat2mat, vec2mat, mav2vec

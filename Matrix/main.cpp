@@ -23,5 +23,10 @@ int main(){
     MatrixDense<int> B = arr.multiply(vec1);
     B.print();
     matrix.print();
+    // matrix.export2file("dense_mat");
+    std::cout << "imported matrix1" << std::endl;
+    MatrixDense<int> mat(2,2);
+    mat.importfromfile("dense_mat");
+    mat.print();
     return 0;
 }
