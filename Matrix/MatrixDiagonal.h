@@ -5,6 +5,8 @@
 #include <fstream>
 #include "../vector/Vector.h"
 #include "MatrixDense.h"
+#include <typeinfo>
+
 
 template<typename T>
 class MatrixDiagonal{
@@ -14,7 +16,9 @@ class MatrixDiagonal{
         MatrixDense<T>* arr;
     public:
         MatrixDiagonal(size_t size, Vector<int>* idx){
-            std::cout << idx->getN();
+            std::cout << idx->getN() << std::endl;
+            std::cout << typeid(T).name();
+            
         }
 
         // ~MatrixDiagonal(){

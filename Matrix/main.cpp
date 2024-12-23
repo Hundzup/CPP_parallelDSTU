@@ -3,6 +3,7 @@
 #include "MatrixDiagonal.h"
 #include "../vector/Vector.h"
 
+
 int main(){
     // int *idx {new int[]{0,1,2,3}};
     size_t size = 5;
@@ -12,6 +13,6 @@ int main(){
     idx(2) = 2;
     idx(3) = 3;
     idx(4) = 4;
-    MatrixDiagonal<int> arr(size, &idx);
+    MatrixDiagonal<size_t> arr(size, &idx);
     return 0;
 }
