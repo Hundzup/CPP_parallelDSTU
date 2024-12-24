@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <iostream>
 #include <fstream>
+#include <random>
+
 
 template<typename T>
 class MatrixDense{
@@ -62,14 +64,14 @@ class MatrixDense{
         }
 
         T& operator()(size_t row, size_t col){
-            if (row < 0 || row > rows || col < 0 || col > cols){
+            if (row < 0 || row > rows-1 || col < 0 || col > cols-1){
                 throw std::out_of_range("Index out of range");
             }
             return arr[row][col];
         }
 
-        const T& operator()(size_t row, size_t col) const{
-            if (row < 0 || row > rows || col < 0 || col > cols){
+        const T operator()(size_t row, size_t col) const{
+            if (row < 0 || row > rows-1 || col < 0 || col > cols-1){
                 throw std::out_of_range("Index out of range");
             }
             return arr[row][col];
@@ -89,6 +91,7 @@ class MatrixDense{
         }
 
         void print(){
+            std::cout << "rows - " << rows << " , cols - " << cols << std::endl; 
             for (size_t i = 0; i < rows; i++){
                 for (size_t j = 0; j < cols; j++){
                     std::cout << arr[i][j] << " ";
@@ -213,6 +216,26 @@ class MatrixDense{
             }        
             inputFile.close();
         }
+
+        size_t getRows(){
+            return rows;
+        }
+
+        size_t getCols(){
+            return cols;
+        }
+
+        void initialize_by_random(T start, T end){
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_real_distribution<> distrib(start, end);
+            for(size_t i=0; i< rows; i++){
+                for (size_t j = 0; j < cols; j++){
+                    arr[i][j] = (T)distrib(gen);
+                }
+            }
+        }
+
         // TODO: creame scalar multiply
         // vec2vec, mat2mat, vec2mat, mav2vec
 };
