@@ -1,0 +1,9 @@
+2
+Intel_i9 8 3.6
+NVIDIA_RTX_3080 10240
+Kingston 32768
+Ethernet 100
+AMD_Ryzen_7 12 3.8
+NVIDIA_RTX_3070 8192
+Kingston 16384
+WiFi 10
