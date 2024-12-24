@@ -1,0 +1,51 @@
+@startuml
+class СpuSpec {
+{field} name: string
+{field} core: int
+{field} frequency: double
+{method} Print()
+{method} Import()
+{method} Export()
+}
+class GpuSpec {
+{field} name: string
+{field} memory: int
+{method} Print()
+{method} Import()
+{method} Export()
+}
+class RamSpec {
+{field} name: string
+{field} size: int
+{method} Print()
+{method} Import()
+{method} Export()
+}
+class LanSpec {
+{field} interface: string
+{field} speed: int
+{method} Print()
+{method} Import()
+{method} Export()
+}
+class ClusterNode {
+{field} CpuSpec cpu
+{field} GpuSpec gpu
+{field} RamSpec ram
+{field} LanSpec lan
+{method} Print()
+{method} Import()
+{method} Export()
+}
+class Cluster {
+{field} vector<ClusterNode> nodes
+{method} Print()
+{method} Import()
+{method} Export()
+}
+Cluster <|-- ClusterNode
+ClusterNode <|-- СpuSpec
+ClusterNode <|-- GpuSpec
+ClusterNode <|-- RamSpec
+ClusterNode <|-- LanSpec
+@enduml
