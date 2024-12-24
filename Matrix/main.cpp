@@ -12,10 +12,10 @@ int main(){
     idx(0, 2) = 2;
     idx(0, 3) = -1;
     idx(0, 4) = 4;
-    MatrixDiagonal<int> arr(size, &idx);
-    idx.print();
-    // arr.initialize_by_random(1, 4);
-    arr.initialize_by_arrange();
+    MatrixDiagonal<double> arr(size, &idx);
+    // idx.print();
+    arr.initialize_by_random(1, 4);
+    // arr.initialize_by_arrange();
     arr.print();
     return 0;
 }

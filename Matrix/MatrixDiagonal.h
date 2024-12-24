@@ -1,6 +1,7 @@
 #ifndef MATRIXDIAGONAL_H
 #define MATRIXDIAGONAL_H
 #include <cstddef>
+#include <type_traits>
 #include <random>
 #include <iostream>
 #include <fstream>
@@ -55,21 +56,25 @@ class MatrixDiagonal{
         void initialize_by_arrange(){
             for (size_t i=0; i < arr->getRows(); i++){
                 for (size_t j=0; j < arr->getCols(); j++){
-                    // std::cout << (T)(idx->operator()(0, i)) << " ";
                     arr->operator()(i, j) = (T)(idx->operator()(0, i));
                 }
-                // std::cout << std::endl;
             }
         }
 
         void print(){
-            // std::cout << arr->getCols() << " " << arr->getRows() << std::endl;
             std::cout << "Rows - " << arr->getRows() << " Cols - " << arr->getCols() << std::endl;
             for (size_t i = 0; i < arr->getRows(); i++){
-                for (size_t j=0; j < arr->getCols(); j++){
-                    printf("%2d", operator()(i, j));
+                for (size_t j = 0; j < arr->getCols(); j++){
+                    if constexpr (std::is_same<T, int>::value){
+                        printf("%2d", operator()(i, j));
+                    }else{
+                        if constexpr (std::is_same<T, double>::value){
+                            printf("%.2f", operator()(i, j));
+                        }else{
+                            std::cout << operator()(i, j);
+                        }
+                    }
                     std::cout << " ";
-                    // std::cout << operator()(i, j) << " ";
                 }
                 std::cout << std::endl;
             }
