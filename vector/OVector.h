@@ -18,7 +18,63 @@ class OVector: public Vector<T>{
             delete[] data;
         }
 
-        
+        using Vector<T>::initialize_by_const;
+
+        using Vector<T>::print;
+
+        using Vector<T>::getIs_initialize;
+
+        using Vector<T>::operator();
+
+        using Vector<T>::getN;
+
+        std::pair<T, double> sum_elem(int n_thread = -1){
+            T rezult = 0;
+            auto start = clock();
+            if (n_thread == -1){
+                #pragma omp parallel for
+                for (size_t i = 0; i < getN(); i++){
+                    rezult += operator()(i);
+                }
+            }else{
+                omp_set_num_threads(n_thread);
+                #pragma omp parallel for
+                for (size_t i = 0; i < getN(); i++){
+                    rezult += operator()(i);
+                }
+            }
+            auto end = clock();
+            return std::make_pair(rezult, (double)(end - start)/CLOCKS_PER_SEC);
+        }
+
+        std::pair<T, double> mean(int n_thread=-1){
+            T mean = 0;
+            auto start = clock();
+            if (n_thread == -1){
+                T local_mean = 0;
+                #pragma omp parallel for
+                for (size_t i = 0; i < getN(); i++){
+                    local_mean += operator()(i);
+                }
+
+                #pragma omp atomic
+                mean += local_mean;
+            }else{
+                omp_set_num_threads(n_thread);   
+                T local_mean = 0;
+                #pragma omp parallel for
+                for (size_t i = 0; i < getN(); i++){
+                    local_mean += operator()(i);
+                }
+
+                #pragma omp atomic
+                mean += local_mean;
+            }
+            mean = mean/getN();
+            auto end = clock();
+            return std::make_pair(mean, (double)(end-start)/CLOCKS_PER_SEC);
+        }
+
 };
 
 
