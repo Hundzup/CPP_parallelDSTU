@@ -13,7 +13,7 @@ class TVector :public Vector<T>{
     private:
         mutable std::mutex mtx;
         size_t n;
-        T* data;;
+        T* data;
         bool is_initialize;
     public:
         TVector(size_t n) : Vector<T>(n){}
